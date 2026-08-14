@@ -12,14 +12,14 @@ I use projects to turn concepts into practical experience.
 
 ### 1. OOP Projects
 
-- [ ] OOP Fundamentals
-- [ ] Classes & Objects
-- [ ] Constructors
-- [ ] Encapsulation
-- [ ] Inheritance
-- [ ] Abstraction
-- [ ] Polymorphism
-- [ ] Interfaces
+- [X] OOP Fundamentals
+- [X] Classes & Objects
+- [X] Constructors
+- [X] Encapsulation
+- [X] Inheritance
+- [X] Abstraction
+- [X] Polymorphism
+- [X] Interfaces
 - [ ] Composition & Relationships
 - [ ] Object Communication
 
