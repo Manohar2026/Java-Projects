@@ -6,6 +6,9 @@ import com.example.learning.entity.Product;
 import com.example.learning.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ProductService {
 
@@ -19,13 +22,28 @@ public class ProductService {
         productRepository.save(mapToEntity(productRequest));
     }
 
-    public void getAllProducts() {}
+    public List<ProductResponse> getAllProducts() {
+        List<Product> products = productRepository.findAll();
+        List<ProductResponse> responses = new ArrayList<>();
 
-    public void getProductById(Long id) {}
+        for(Product product : products) {
+            responses.add(mapToDto(product));
+        }
 
-    public void updateProduct(ProductRequest productRequest) {}
+        return responses;
+    }
 
-    public void deleteProductById(Long id) {}
+    public ProductResponse getProductById(Long id) {
+        return mapToDto(productRepository.findById(id).orElse(null));
+    }
+
+    public void updateProduct(ProductRequest productRequest) {
+        productRepository.save(mapToEntity(productRequest));
+    }
+
+    public void deleteProductById(Long id) {
+        productRepository.deleteById(id);
+    }
 
     private Product mapToEntity(ProductRequest productRequest) {
         Product product = new Product();
