@@ -2,6 +2,8 @@ package com.example.crud.Controller;
 
 import com.example.crud.Entity.Student;
 import com.example.crud.Service.StudentService;
+import com.example.crud.dto.StudentRequestDto;
+import com.example.crud.dto.StudentResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,17 +20,17 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public Student addStudent(@RequestBody Student student) {
-        return studentService.save(student);
+    public StudentResponseDto addStudent(@RequestBody StudentRequestDto studentReqDto) {
+        return studentService.save(studentReqDto);
     }
 
     @GetMapping("/find")
-    public List<Student> getStudents() {
+    public List<StudentResponseDto> getStudents() {
         return studentService.findAll();
     }
 
     @GetMapping("/find/{id}")
-    public Student getStudentById(@PathVariable Long id) {
+    public StudentResponseDto getStudentById(@PathVariable Long id) {
         return studentService.findById(id);
     }
 
@@ -38,10 +40,10 @@ public class StudentController {
     }
 
     @PutMapping("/update/{id}")
-    public Student updateStudent(
+    public StudentResponseDto updateStudent(
             @PathVariable Long id,
-            @RequestBody Student student) {
+            @RequestBody StudentRequestDto studentReqDto) {
 
-        return studentService.updateStudent(id, student);
+        return studentService.updateStudent(id, studentReqDto);
     }
 }
