@@ -1,8 +1,11 @@
 package com.example.learning.controller;
 
 import com.example.learning.dto.request.ProductRequest;
+import com.example.learning.dto.response.ProductResponse;
 import com.example.learning.service.ProductService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/Product")
@@ -20,14 +23,22 @@ public class ProductController {
     }
 
     @GetMapping
-    public void getAllProducts() {}
+    public List<ProductResponse> getAllProducts() {
+        return productService.getAllProducts();
+    }
 
     @GetMapping("{id}")
-    public void getProductById(@RequestParam Long id) {}
+    public ProductResponse getProductById(@RequestParam Long id) {
+        return productService.getProductById(id);
+    }
 
     @PutMapping
-    public void updateProduct() {}
+    public void updateProduct(@RequestBody ProductRequest productRequest) {
+        productService.updateProduct(productRequest);
+    }
 
     @DeleteMapping("{id}")
-    public void deleteProductById(@RequestParam Long id) {}
+    public void deleteProductById(@RequestParam Long id) {
+        productService.deleteProductById(id);
+    }
 }
