@@ -18,8 +18,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public void createProduct(@RequestBody ProductRequest productRequest) {
+    public String createProduct(@RequestBody ProductRequest productRequest) {
         productService.createProduct(productRequest);
+        return "Successfull";
     }
 
     @GetMapping
@@ -28,17 +29,19 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public ProductResponse getProductById(@RequestParam Long id) {
+    public ProductResponse getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
 
     @PutMapping
-    public void updateProduct(@RequestBody ProductRequest productRequest) {
+    public String updateProduct(@RequestBody ProductRequest productRequest) {
         productService.updateProduct(productRequest);
+        return "Successfully updated";
     }
 
     @DeleteMapping("{id}")
-    public void deleteProductById(@RequestParam Long id) {
+    public String deleteProductById(@PathVariable Long id) {
         productService.deleteProductById(id);
+        return "Deleted";
     }
 }

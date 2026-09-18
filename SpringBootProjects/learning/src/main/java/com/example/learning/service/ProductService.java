@@ -38,7 +38,14 @@ public class ProductService {
     }
 
     public void updateProduct(ProductRequest productRequest) {
-        productRepository.save(mapToEntity(productRequest));
+        Product product = productRepository.findById(productRequest.getId())
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        product.setName(productRequest.getName());
+        product.setPrice(productRequest.getPrice());
+        product.setQuantity(productRequest.getQuantity());
+
+        productRepository.save(product);
     }
 
     public void deleteProductById(Long id) {
